@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+{% load static %}
+<html
+  lang="en"
+  class="
+    has-aside-left
+    has-aside-mobile-transition
+    has-navbar-fixed-top
+    has-aside-expanded
+  "
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cancel Request</title>
+
+    <!-- Bulma is included -->
+    <link rel="stylesheet" href="{% static 'userMain.min.css' %}" />
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <nav id="navbar-main" class="navbar is-fixed-top">
+          <div class="navbar-brand">
+            <a class="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
+              <span class="icon"
+                ><i class="mdi mdi-forwardburger mdi-24px"></i
+              ></span>
+            </a>
+            <div class="navbar-item has-control">
+              <div class="control">
+                <input placeholder="Search everywhere..." class="input" />
+              </div>
+            </div>
+          </div>
+          <div class="navbar-brand is-right">
+            <a
+              class="navbar-item is-hidden-desktop jb-navbar-menu-toggle"
+              data-target="navbar-menu"
+            >
+              <span class="icon"><i class="mdi mdi-dots-vertical"></i></span>
+            </a>
+          </div>
+          <div class="navbar-menu fadeIn animated faster" id="navbar-menu">
+            <div class="navbar-end">
+              <div
+                class="
+                  navbar-item
+                  has-dropdown has-dropdown-with-icons has-divider
+                  is-hoverable
+                "
+              >
+                <div class="navbar-dropdown">
+                  <a href="{% url 'userProfile' %}" class="navbar-item">
+                    <span class="icon"><i class="mdi mdi-account"></i></span>
+                    <span>My Profile</span>
+                  </a>
+                  <a class="navbar-item">
+                    <span class="icon"><i class="mdi mdi-email"></i></span>
+                    <span>Messages</span>
+                  </a>
+                  <hr class="navbar-divider" />
+                  <a class="navbar-item" href="{% url 'logout' %}">
+                    <span class="icon"><i class="mdi mdi-logout"></i></span>
+                    <span>Log Out</span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="
+                  navbar-item
+                  has-dropdown
+                  has-dropdown-with-icons
+                  has-divider
+                  has-user-avatar
+                  is-hoverable
+                "
+              >
+                <a class="navbar-link is-arrowless">
+                  <div
+                    class="is-user-name"
+                    style="font-size: 20px; margin-top: 3px"
+                  >
+                    <span>{{request.user}}</span>
+                  </div>
+                  <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                </a>
+                <div class="navbar-dropdown">
+                  <a href="{% url 'userProfile' %}" class="navbar-item">
+                    <span class="icon"><i class="mdi mdi-account"></i></span>
+                    <span>My Profile</span>
+                  </a>
+                  <a class="navbar-item">
+                    <span class="icon"><i class="mdi mdi-email"></i></span>
+                    <span>Messages</span>
+                  </a>
+                  <hr class="navbar-divider" />
+                  <a class="navbar-item" href="{% url 'logout' %}">
+                    <span class="icon"><i class="mdi mdi-logout"></i></span>
+                    <span>Log Out</span>
+                  </a>
+                </div>
+              </div>
+              <a
+                title="Log out"
+                class="navbar-item is-desktop-icon-only"
+                href="{% url 'logout' %}"
+              >
+                <span class="icon"><i class="mdi mdi-logout"></i></span>
+                <span>Log out</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+        <aside class="aside is-placed-left is-expanded">
+          <div class="aside-tools">
+            <div class="aside-tools-label">
+              <span><b>SMMS</b> Management System</span>
+            </div>
+          </div>
+          <div class="menu is-menu-main">
+            <p class="menu-label">General</p>
+            <ul class="menu-list">
+              <li>
+                <a href="{% url 'userBooking' %}" class="has-icon">
+                  <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                  <span class="menu-item-label">Booking</span>
+                </a>
+              </li>
+            </ul>
+            <ul class="menu-list">
+              <li>
+                <a href="{% url 'userCancel' %}" class="is-active has-icon">
+                  <span class="icon"
+                    ><i class="mdi mdi-square-edit-outline"></i
+                  ></span>
+                  <span class="menu-item-label">Cancel Request</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'userHistory' %}" class="has-icon">
+                  <span class="icon"><i class="mdi mdi-table"></i></span>
+                  <span class="menu-item-label">History</span>
+                </a>
+              </li>
+              <li></li>
+            </ul>
+            <ul class="menu-list"></ul>
+          </div>
+        </aside>
+        <section class="section is-title-bar">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <ul>
+                  <li>User</li>
+                  <li>Cancel Request</li>
+                </ul>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item"></div>
+            </div>
+          </div>
+        </section>
+        <section class="section is-main-section">
+          <div class="card has-table">
+            <header class="card-header">
+              <a href="#" class="card-header-icon">
+                <span class="icon"><i class="mdi mdi-reload"></i></span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="b-table has-pagination">
+                <div class="table-wrapper has-mobile-cards">
+                  <table
+                    class="
+                      table
+                      is-fullwidth is-striped is-hoverable is-fullwidth
+                    "
+                  >
+                    <thead>
+                      <tr>
+                        <th class="is-checkbox-cell"></th>
+                        <th>Hostel</th>
+                        <th>Category</th>
+                        <th>Progress</th>
+                        <th>Remark</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for cancel in cancels %}
+                      <tr>
+                        <td class="is-checkbox-cell">
+                          <label class="b-checkbox checkbox">
+                            <span class="check"></span>
+                          </label>
+                        </td>
+                        <td data-label="Hostel">{{cancel.hostel}}</td>
+                        <td data-label="Category">{{cancel.category}}</td>
+                        <td data-label="Progress" class="is-progress-cell">
+                          {{cancel.progress}}
+                        </td>
+                        <td data-label="Remark">{{cancel.remark}}</td>
+                        <td class="is-actions-cell">
+                          <div class="buttons is-right">
+                            <button
+                              class="button is-small is-danger jb-modal"
+                              data-target="delete-modal"
+                              type="button"
+                            >
+                              <span class="icon"
+                                ><i class="mdi mdi-trash-can"></i
+                              ></span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="delete-modal" class="modal">
+            <div class="modal-background jb-modal-close"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Confirm action</p>
+                <button
+                  class="delete jb-modal-close"
+                  aria-label="close"
+                ></button>
+              </header>
+              <section class="modal-card-body">
+                <p>This will permanently delete this request!</p>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button jb-modal-close">Cancel</button>
+                <button class="button is-danger jb-modal-close">Delete</button>
+              </footer>
+            </div>
+            <button
+              class="modal-close is-large jb-modal-close"
+              aria-label="close"
+            ></button>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- Scripts below are for demo only -->
+    <script
+      type="text/javascript"
+      src="{% static 'userMain.min.js' %}"
+    ></script>
+
+    <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"
+    />
+  </body>
+</html>
